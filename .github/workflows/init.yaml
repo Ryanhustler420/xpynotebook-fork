@@ -7,3 +7,12 @@ jobs:
     steps:
       - name: Print
         run: echo init
+
+# git clone Ryanhustler420/xpynotebook -token=?
+# cd xpynotebook
+# docker build . -t ... --build-arg ... {secrets.?}
+# publish to docker hub
+# # run the puppeteer
+
+# Create New Service to render/supabase
+# Update the repository gist details and npoint.io
