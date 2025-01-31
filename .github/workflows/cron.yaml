@@ -1,0 +1,9 @@
+name: CRON
+on:
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: echo Running
