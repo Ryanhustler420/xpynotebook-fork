@@ -3,10 +3,11 @@ on:
   workflow_dispatch:
 jobs:
   publish:
+    if: github.event.repository.fork == true  # Runs only on forked repos
     runs-on: ubuntu-latest
     steps:
-      - name: Print
-        run: echo init
+      - name: Check Repository
+        run: echo "This repository is a fork, publish image on docker hub."
 
 # git clone Ryanhustler420/xpynotebook -token=?
 # cd xpynotebook
