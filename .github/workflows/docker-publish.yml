@@ -1,0 +1,38 @@
+name: Docker Publish
+env: { CONTAINER_PORT: 8888, PRODUCTION_PORT: 8082 }
+on:
+  workflow_dispatch:
+jobs:
+  dockerize-and-publish:
+    if: github.event.repository.fork == true  # Runs only on forked repos
+    runs-on: ubuntu-latest
+    steps:
+      # - name: ⬇️ Get the code
+      #   uses: actions/checkout@v4
+      # Clone the repo {secrets.REPO_NAME} with token = {secrets.REPO_TOKEN}
+      - name: 🐟 Build production image
+        run: |
+          docker build -t "${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}" . \
+          --build-arg PASSWORD="${{ secrets.WF_PASSWORD_PRODUCTION }}" \
+          --build-arg SUPABASE_KEY="${{ secrets.WF_SUPABASE_PRODUCTION_KEY }}" \
+          --build-arg SUPABASE_URL="${{ secrets.WF_SUPABASE_PRODUCTION_URL }}" \
+          --build-arg ASSETS_PATH="${{ secrets.WF_SUPABASE_PRODUCTION_ASSETS_PATH }}" \
+          --build-arg BUCKET_NAME="${{ secrets.WF_SUPABASE_PRODUCTION_BUCKET_NAME }}"
+      - name: 🏡 Run production image
+        run: docker run -d --name=production -p ${{ env.PRODUCTION_PORT }}:${{ env.CONTAINER_PORT }} ${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}
+      - name: 💤 Sleep for 5 seconds
+        run: sleep 5
+      - name: 📝 Production Container Logs
+        run: docker logs production
+      - name: 📞 Calling production api
+        run: curl http://localhost:${{ env.PRODUCTION_PORT }}
+      - name: 1️⃣ Docker production account login
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME: ${{ secrets.WF_DOCKER_PRODUCTION_ACCOUNT_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.WF_DOCKER_PRODUCTION_ACCOUNT_PASSWORD }}
+      - name: 🌩️ Push production image to docker hub
+        run: docker push ${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}
+      - name: 1️⃣ Docker production account logout
+        run: docker logout
+      # Run puppeteer which reploy on render.com
