@@ -62,3 +62,4 @@ Create these branches: `master`
 7. Let cron workflow will do it's task on every night
 8. Create & mention these on `private gist` and not on README.md
 9. Keep safe these details on `npx.io` service.
+10. Setup CronJob for this service.
