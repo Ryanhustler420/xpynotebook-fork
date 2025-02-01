@@ -38,6 +38,7 @@ jobs:
       - name: 1️⃣ Docker production account logout
         run: docker logout
       # Run puppeteer which reploy on render.com
+      # Update this this forked repository to pull and commit latest pull
 
 # Create New Service to render/supabase
 # Update the repository gist details and npoint.io
