@@ -50,6 +50,14 @@ Create these branches: `master`
 - Make your docker image private once they published
 - Use lower case for login and building docker images
 
-### Rollback
+## Steps
 
-- Todo
+1. We’ll take user’s phone number and create these accounts
+2. `Gmail`, `Github`, `Docker`, `Render`, `SupaBase`
+3. Open their `GitHub` and fork this repository
+4. Update the secrets based on our need
+5. Run `docker-publish.yml` workflow to for the first time
+6. Spin new `Render/SupaBase` service with all setup
+7. Let cron workflow will do it's task on every night
+8. Create & mention these on `private gist` and not on README.md
+9. Keep safe these details on `npx.io` service.
