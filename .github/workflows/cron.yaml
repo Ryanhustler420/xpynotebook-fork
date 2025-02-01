@@ -10,3 +10,6 @@ jobs:
     steps:
       - name: Check Repository
         run: echo "This repository is a fork, executing task."
+
+# Create New Service to render/supabase
+# Update the repository gist details and npoint.io
