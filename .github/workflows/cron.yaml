@@ -36,10 +36,12 @@ jobs:
         run: docker push ${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}
       - name: 1️⃣ Docker production account logout
         run: docker logout
-
-      - uses: actions/checkout@v4
-      - name: 🟩 Running the puppeteer container
-        run: docker run -i --init --cap-add=SYS_ADMIN ghcr.io/puppeteer/puppeteer node -e "$(cat srv/render.js)"
+      - name: ⚠️ Production Deploy Trigger
+        id: render-production-deployer
+        uses: Ryanhustler420/render-deploy-api@v1.0.0
+        with:
+          serviceId: ${{ secrets.WF_RENDER_PRODUCTION_APP_SERVICE_ID }}
+          bearer: ${{ secrets.WF_RENDER_PRODUCTION_PROFILE_AUTH_API_TOKEN }}
 
       # Update this this forked repository to pull and commit latest pull
 
