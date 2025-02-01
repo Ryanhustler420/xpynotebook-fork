@@ -1,9 +1,12 @@
 name: CRON
 on:
   workflow_dispatch:
+  # schedule:
+  #   - cron: "30 15 * * *"  # 9:00 PM IST (IST is UTC+5:30, so 15:30 UTC)
 jobs:
   refresh:
+    if: github.event.repository.fork == true  # Runs only on forked repos
     runs-on: ubuntu-latest
     steps:
-      - name: Print
-        run: echo Running
+      - name: Check Repository
+        run: echo "This repository is a fork, executing task."
