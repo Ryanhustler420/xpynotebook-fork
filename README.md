@@ -28,6 +28,7 @@ Create these branches: `master`
 
 > You can pre create these, since these details are not tighly coupled with this repository
 
+- WF\_<span style="color:purple;">**REPO**</span>\_NAME_TARGET : `username/repository`
 - WF\_<span style="color:purple;">**TOKEN**</span>\_TARGETED_GH_PROFILE : `targeted-gh-token`
 - WF\_<span style="color:pink;">**PASSWORD**</span>\_PRODUCTION : `login-password`
 - WF\_<span style="color:red;">**DOCKER**</span>\_PRODUCTION_ACCOUNT_USERNAME : `username`
