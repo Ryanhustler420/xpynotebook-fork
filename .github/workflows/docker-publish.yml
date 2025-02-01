@@ -7,9 +7,8 @@ jobs:
     if: github.event.repository.fork == true  # Runs only on forked repos
     runs-on: ubuntu-latest
     steps:
-      # - name: ⬇️ Get the code
-      #   uses: actions/checkout@v4
-      # Clone the repo {secrets.REPO_NAME} with token = {secrets.REPO_TOKEN}
+      - name: ⬇️ Clone the code
+        run: echo "Clone the repo {secrets.REPO_NAME} with token = {secrets.REPO_TOKEN}"
       - name: 🐟 Build production image
         run: |
           docker build -t "${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}" . \
@@ -35,4 +34,3 @@ jobs:
         run: docker push ${{ secrets.WF_DOCKER_PRODUCTION_IMAGE_NAME }}
       - name: 1️⃣ Docker production account logout
         run: docker logout
-      # Run puppeteer which reploy on render.com
