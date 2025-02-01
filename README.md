@@ -44,7 +44,8 @@ Create these branches: `master`
 
 ## Keep in mind
 
-- Update your repository secrets
+- Update your repository secrets as soon as you fork this repository
+- Please run docker-publish.yaml action at least once after you add secrets for docker account
 - Make your docker image private once they published
 - Use lower case for login and building docker images
 
